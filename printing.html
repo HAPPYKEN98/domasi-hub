@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Printing Hub | Domasi Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="btn-secondary">Home</a>
+        </nav>
+    </header>
+
+    <main class="printing-container">
+        <!-- PAGE TITLE -->
+        <section class="section-title">
+            <h3>Student Printing Hub</h3>
+            <p>Locate active, student-operated print services on campus to fulfill your assignments instantly.</p>
+        </section>
+
+        <!-- PRINTER OPERATORS GRID -->
+        <section class="printers-grid">
+            
+            <!-- Printer Operator 1 -->
+            <div class="printer-card active">
+                <div class="status-badge online">Online</div>
+                <div class="printer-info">
+                    <h4>Mzumara Tech Prints</h4>
+                    <p class="printer-location">📍 Location: Science Block / Hostel 4</p>
+                    
+                    <table class="pricing-table">
+                        <tr>
+                            <td>Black & White:</td>
+                            <td><strong>MK 100 / pg</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Color Print:</td>
+                            <td><strong>MK 250 / pg</strong></td>
+                        </tr>
+                    </table>
+
+                    <p class="printer-hardware">Equipment: HP LaserJet Pro (Fast Duplex)</p>
+                    
+                    <!-- Direct secure upload pathway per specific operator -->
+                    <a href="#" class="btn-primary btn-print-action">Select & Upload File</a>
+                </div>
+            </div>
+
+            <!-- Printer Operator 2 -->
+            <div class="printer-card active">
+                <div class="status-badge online">Online</div>
+                <div class="printer-info">
+                    <h4>Chikondi Digital Station</h4>
+                    <p class="printer-location">📍 Location: Near Main Library Gate</p>
+                    
+                    <table class="pricing-table">
+                        <tr>
+                            <td>Black & White:</td>
+                            <td><strong>MK 120 / pg</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Color Print:</td>
+                            <td><strong>MK 300 / pg</strong></td>
+                        </tr>
+                    </table>
+
+                    <p class="printer-hardware">Equipment: Canon Pixma (High Res Glossy)</p>
+                    
+                    <a href="#" class="btn-primary btn-print-action">Select & Upload File</a>
+                </div>
+            </div>
+
+            <!-- Printer Operator 3 -->
+            <div class="printer-card offline">
+                <div class="status-badge offline">Offline</div>
+                <div class="printer-info">
+                    <h4>Grace's Copy Center</h4>
+                    <p class="printer-location">📍 Location: Human Ecology Wing</p>
+                    
+                    <table class="pricing-table">
+                        <tr>
+                            <td>Black & White:</td>
+                            <td><strong>MK 100 / pg</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Color Print:</td>
+                            <td><strong>MK 250 / pg</strong></td>
+                        </tr>
+                    </table>
+
+                    <p class="printer-hardware">Equipment: Epson EcoTank</p>
+                    
+                    <button class="btn-primary btn-print-action" disabled style="background-color: var(--secondary-color); cursor: not-allowed; opacity: 0.6;">Closed</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Domasi Hub. An Independent Student Innovation.</p>
+    </footer>
+
+</body>
+</html>

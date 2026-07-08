@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Domasi Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
+        </div>
+    </header>
+
+    <!-- SIGN UP FORM CONTAINER -->
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <p class="auth-subtitle">Register to unlock the marketplace, printing hub, and accommodation listings.</p>
+            
+            <form id="signUpForm" novalidate>
+                <!-- Full Name Field -->
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        placeholder="e.g., John Doe" 
+                        required
+                    >
+                </div>
+
+                <!-- Registration Number Field (Gatekeeper) -->
+                <div class="form-group">
+                    <label for="regNumber">Registration Number</label>
+                    <input 
+                        type="text" 
+                        id="regNumber" 
+                        
+                        required
+                        autocomplete="off"
+                    >
+                    <!-- Holds live validation text message -->
+                    <div id="validationFeedback" class="feedback-message"></div>
+                </div>
+
+                <!-- WhatsApp Contact Number -->
+                <div class="form-group">
+                    <label for="whatsappNumber">WhatsApp Number</label>
+                    <input 
+                        type="tel" 
+                        id="whatsappNumber" 
+                        placeholder="e.g., 0888123456" 
+                        required
+                    >
+                </div>
+
+               <!-- Password Field -->
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Choose a secure password" required>
+</div>
+
+<!-- Confirm Password Field -->
+<div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
+    <!-- Holds match validation text message -->
+    <div id="passwordFeedback" class="feedback-message"></div>
+</div>
+
+                <button type="submit" class="btn-primary btn-block">Register Account</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Domasi Hub.</p>
+    </footer>
+
+
+    <script src="auth.js"></script>
+</body>
+</body>
+</html>

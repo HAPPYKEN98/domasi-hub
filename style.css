@@ -1,0 +1,693 @@
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #007bff;   /* Sleek Blue */
+    --secondary-color: #6c757d; /* Neutral Gray */
+    --dark-bg: #1e1e24;         /* Deep Slate for Header/Footer */
+    --light-bg: #f8f9fa;        /* Light Gray Background */
+    --card-bg: #ffffff;         /* Pure White for Cards */
+    --text-main: #333333;       /* Primary Text */
+    --text-muted: #666666;      /* Secondary Text */
+    --accent-green: #28a745;    /* Green for Security/Success */
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
+.main-header {
+    background-color: var(--dark-bg);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Common Button Rules */
+button, .btn-primary, .btn-secondary {
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 1.5px solid white;
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: var(--dark-bg);
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, #0056b3 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 0.8rem 2rem;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   4. SECURITY BANNER
+   ========================================================================== */
+.security-banner {
+    background-color: #e2f0d9;
+    color: #385723;
+    padding: 0.8rem 5%;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #c5e0b4;
+}
+
+/* ==========================================================================
+   5. CORE MODULES GRID (Mobile-First Setup)
+   ========================================================================== */
+.modules-section {
+    padding: 4rem 5%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h3 {
+    font-size: 1.8rem;
+    color: var(--dark-bg);
+}
+
+.section-title p {
+    color: var(--text-muted);
+}
+
+/* Base stack layout for phones */
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.module-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left-aligned for clean mobile scanning */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.module-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark-bg);
+}
+
+.module-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes the link to the absolute bottom of the card */
+}
+
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+.main-footer {
+    background-color: var(--dark-bg);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 2rem 5%;
+    font-size: 0.85rem;
+    margin-top: 4rem;
+}
+
+.main-footer p:first-child {
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE MEDIA QUERIES (Desktop Enhancements)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .hero-content h2 {
+        font-size: 3.2rem;
+    }
+    
+    /* Snaps layout into a 3-column row on tablets and laptops */
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+
+
+/*Style for the sign up page */
+
+/* ==========================================================================
+   8. AUTHENTICATION PAGE (SIGN IN)
+   ========================================================================== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    padding: 2rem 5%;
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-card h2 {
+    font-size: 1.8rem;
+    color: var(--dark-bg);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--dark-bg);
+}
+
+.form-group input {
+    padding: 0.8rem 1rem;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+/* Visual states for input field validation */
+.form-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.form-group input.valid {
+    border-color: var(--accent-green);
+    background-color: #f2f9f3;
+}
+
+.form-group input.invalid {
+    border-color: #dc3545;
+    background-color: #fdf3f4;
+}
+
+.feedback-message {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.feedback-message.error {
+    color: #dc3545;
+}
+
+.feedback-message.success {
+    color: var(--accent-green);
+}
+
+.btn-block {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+
+/* Style for the signin page */
+
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.auth-switch a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+/*style for new nav buttons both log in and register buttons*/
+
+
+/* Common Button & Link Rules */
+button, .btn-primary, .btn-secondary {
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   9. CAMPUS MARKETPLACE LAYOUT
+   ========================================================================== */
+.marketplace-container {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first single column stack */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--dark-bg);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.product-info h4 {
+    font-size: 1.25rem;
+    color: var(--dark-bg);
+    padding-right: 70px; /* Prevents text colliding with the badge */
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.product-condition, .product-seller {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.btn-marketplace {
+    background-color: var(--accent-green); /* WhatsApp style theme alignment */
+    color: white;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    border: none;
+}
+
+.btn-marketplace:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+/* Tablet & Desktop Layout Scaling Upgrade */
+@media (min-width: 600px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+
+/* ==========================================================================
+   10. STUDENT PRINTING HUB LAYOUT
+   ========================================================================== */
+.printing-container {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.printers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.printer-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gray out offline stations slightly */
+.printer-card.offline {
+    opacity: 0.75;
+}
+
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.status-badge.online {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.offline {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.printer-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.printer-info h4 {
+    font-size: 1.4rem;
+    color: var(--dark-bg);
+}
+
+.printer-location {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+/* Compact layout for clean rate comparison matrix */
+.pricing-table {
+    width: 100%;
+    max-width: 280px;
+    margin: 0.5rem 0;
+    border-collapse: collapse;
+}
+
+.pricing-table td {
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.pricing-table td strong {
+    color: var(--dark-bg);
+}
+
+.printer-hardware {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-muted);
+    border-top: 1px dashed #e0e0e0;
+    padding-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-print-action {
+    width: 100%;
+    padding: 0.85rem;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+}
+
+/* Viewport Scaling Engine Hooks */
+@media (min-width: 768px) {
+    .printers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1050px) {
+    .printers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   11. ACCOMMODATION DIRECTORY LAYOUT
+   ========================================================================== */
+.accommodation-container {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.room-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 6px;
+}
+
+.room-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-grow: 1;
+}
+
+.room-info h4 {
+    font-size: 1.4rem;
+    color: var(--dark-bg);
+    padding-right: 140px; /* Prevents long titles from hitting the price tag */
+}
+
+.room-distance {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* Metadata utility grid layout */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+
+.spec-item {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.landlord-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.btn-accommodation {
+    width: 100%;
+    padding: 0.85rem;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+    margin-top: auto; /* Forces button to align at the bottom if descriptions vary */
+}
+
+/* Responsive breakpoint handling */
+@media (min-width: 768px) {
+    .rooms-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .rooms-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

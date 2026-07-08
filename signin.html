@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Domasi Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
+        </div>
+    </header>
+
+    <!-- SIGN IN FORM CONTAINER -->
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Sign in to access your student utility network.</p>
+            
+            <form id="signInForm" novalidate>
+                <!-- Registration Number Field (Gatekeeper) -->
+                <div class="form-group">
+                    <label for="regNumber">Registration Number</label>
+                    <input 
+                        type="text" 
+                        id="regNumber" 
+                        placeholder="Enter your student ID" 
+                        required
+                        autocomplete="off"
+                    >
+                    <div id="validationFeedback" class="feedback-message"></div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">Sign In</button>
+            </form>
+
+            <!-- Link to toggle back to registration -->
+            <div class="auth-switch">
+                <p>New to the platform? <a href="signup.html">Create an account</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Domasi Hub. An Independent Student Innovation.</p>
+    </footer>
+
+    <script src="auth-signin.js"></script>
+</body>
+</html>
