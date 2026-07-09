@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            localStorage.setItem('domasi-auth', 'signed-in');
             alert('Signed in successfully. Redirecting...');
             window.location.href = 'portal.html';
         } catch (error) {

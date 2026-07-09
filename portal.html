@@ -20,7 +20,7 @@
                     </span>
                 </button>
             </div>
-            <a href="index.html" class="btn-secondary">Log Out</a>
+            <a href="index.html" class="btn-secondary" id="logoutLink">Log Out</a>
         </nav>
     </header>
 
@@ -219,6 +219,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const sessionKey = 'domasi-auth';
+            const session = localStorage.getItem(sessionKey);
+
+            if (!session) {
+                window.location.href = 'signin.html';
+                return;
+            }
+
             const modal = document.getElementById('accommodationModal');
             const openBtn = document.getElementById('adminAccommodationBtn');
             const closeBtn = document.getElementById('closeAccModalBtn');
@@ -242,6 +250,15 @@
                         statusLabel.textContent = 'Offline / Closed';
                         statusLabel.style.color = 'var(--secondary-color)';
                     }
+                });
+            }
+
+            const logoutLink = document.getElementById('logoutLink');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem(sessionKey);
+                    window.location.href = 'index.html';
                 });
             }
 
