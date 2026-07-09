@@ -8,54 +8,60 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- 1. HEADER & NAVIGATION -->
     <header class="main-header">
         <div class="logo">
             <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
         </div>
+        <nav class="main-nav">
+            <!-- Modern Styled Theme Toggle Container -->
+            <div class="theme-switch-wrapper">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+            <a href="index.html" class="btn-secondary">Home</a>
+        </nav>
     </header>
 
-    <!-- SIGN IN FORM CONTAINER -->
+    <!-- MAIN SEGMENT CONTAINER -->
     <main class="auth-container">
+        <!-- AUTHENTICATION CARD BLOCK -->
         <div class="auth-card">
-            <h2>Welcome Back</h2>
-            <p class="auth-subtitle">Sign in to access your student utility network.</p>
-            
-            <form id="signInForm" novalidate>
-                <!-- Registration Number Field (Gatekeeper) -->
+            <div class="auth-header">
+                <h3>Welcome Back</h3>
+                <p class="auth-subtitle">Sign in to access your student utilities dashboard</p>
+            </div>
+
+            <form id="signInForm" class="auth-form">
                 <div class="form-group">
-                    <label for="regNumber">Registration Number</label>
-                    <input 
-                        type="text" 
-                        id="regNumber" 
-                        placeholder="Enter your student ID" 
-                        required
-                        autocomplete="off"
-                    >
-                    <div id="validationFeedback" class="feedback-message"></div>
+                    <label for="username">Student Username / Email</label>
+                    <input type="text" id="username" name="username" placeholder="e.g., craigmzumara" required>
                 </div>
 
-                <!-- Password Field -->
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your account password" required>
                 </div>
 
                 <button type="submit" class="btn-primary btn-block">Sign In</button>
             </form>
 
-            <!-- Link to toggle back to registration -->
             <div class="auth-switch">
-                <p>New to the platform? <a href="signup.html">Create an account</a></p>
+                <p>New to the network? <a href="signup.html">Create an account</a></p>
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="main-footer">
-        <p>&copy; 2026 Domasi Hub. An Independent Student Innovation.</p>
+        <p>&copy; 2026 Domasi Hub.</p>
     </footer>
 
+    <!-- Core Theme Toggle Script Handlers -->
     <script src="auth-signin.js"></script>
+    <script src="theme.js"></script>
 </body>
 </html>

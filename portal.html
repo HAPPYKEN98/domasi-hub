@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Portal | Domasi Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
+        </div>
+        <nav class="main-nav">
+            <div class="theme-switch-wrapper">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+            <a href="index.html" class="btn-secondary">Log Out</a>
+        </nav>
+    </header>
+
+    <main class="portal-container">
+        <section class="section-title">
+            <h3>Student Management Portal</h3>
+            <p>Manage your active campus marketplace goods, configure printer stations, or update utility records.</p>
+        </section>
+
+        <div class="portal-grid" style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem;">
+            
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <div class="auth-card" style="margin: 0; max-width: 100%;">
+                    <div class="auth-header">
+                        <h4>Post a New Item</h4>
+                        <p class="auth-subtitle">Upload details and item photos. Hold Ctrl/Cmd to select multiple pictures.</p>
+                    </div>
+
+                    <form id="marketplaceUploadForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="itemName">Item / Module Title</label>
+                            <input type="text" id="itemName" placeholder="e.g., Education Foundations" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemPrice">Price (MK)</label>
+                            <input type="number" id="itemPrice" placeholder="e.g., 4500" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemCategory">Category</label>
+                            <select id="itemCategory" required>
+                                <option value="" disabled selected>Select category</option>
+                                <option value="Books">Books & Modules</option>
+                                <option value="Electronics">Electronics & Gadgets</option>
+                                <option value="Essentials">Mattresses & Essentials</option>
+                                <option value="Other">Other Items</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemCondition">Condition</label>
+                            <input type="text" id="itemCondition" placeholder="e.g., Clean / Used" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="itemPhotos">Upload Product Images (Select one or multiple)</label>
+                            <input type="file" id="itemPhotos" class="image-upload-input" accept="image/*" multiple required>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-block">Publish Listing</button>
+                    </form>
+                </div>
+
+                <div class="auth-card" style="margin: 0; max-width: 100%; border-top: 4px solid var(--primary-color);">
+                    <div class="auth-header">
+                        <h4>Register Printer Station</h4>
+                        <p class="auth-subtitle">Add your shop information and setup gallery images.</p>
+                    </div>
+
+                    <form id="printerUploadForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="printerStationName">Station Business Name</label>
+                            <input type="text" id="printerStationName" placeholder="e.g., Mzumara Tech Prints" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="printerStationLocation">Campus Operating Location</label>
+                            <input type="text" id="printerStationLocation" placeholder="e.g., Science Block" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="printerHardwareModel">Equipment Model</label>
+                            <input type="text" id="printerHardwareModel" placeholder="e.g., HP LaserJet Pro" required>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="rateBW">B&W Rate (MK/pg)</label>
+                                <input type="number" id="rateBW" placeholder="70" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rateColor">Color Rate (MK/pg)</label>
+                                <input type="number" id="rateColor" placeholder="200" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="printerPhotos">Upload Station Photos (Select multiple if desired)</label>
+                            <input type="file" id="printerPhotos" class="image-upload-input" accept="image/*" multiple required>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-block">Register Station</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <div class="module-card" style="border-left: 4px solid var(--primary-color);">
+                    <h4>Printer Station Terminal</h4>
+                    <p>Toggle your shop status instantly on the public hub directory.</p>
+                    <div style="display: flex; align-items: center; justify-content: space-between; background-color: var(--bg-accent); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
+                        <div>
+                            <span style="font-weight: 600; display: block;">Station Status</span>
+                            <span id="statusLabel" style="font-size: 0.9rem; color: var(--accent-green); font-weight: bold;">Active & Online</span>
+                        </div>
+                        <button id="printerStatusToggle" class="theme-toggle-btn" aria-label="Toggle Station Status" style="transform: scale(1.1);">
+                            <span id="printerTrack" class="toggle-track" style="background-color: var(--accent-green);">
+                                <span id="printerThumb" class="toggle-thumb" style="transform: translateX(22px);"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="module-card">
+                    <h4>Your Active Listings</h4>
+                    <div class="active-items-list" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; background-color: var(--bg-accent); border-radius: 8px;">
+                            <div>
+                                <h5 style="margin: 0;">Casio Scientific Calculator</h5>
+                                <p style="font-size: 0.85rem; margin: 0;">MK 18,000</p>
+                            </div>
+                            <button class="filter-pill" style="border-color: #dc3545; color: #dc3545; padding: 0.3rem 0.8rem;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card" style="border-left: 4px solid var(--accent-green);">
+                    <h4>Accommodation Controls (Admin)</h4>
+                    <p>Internal utility restricted to page owners for publishing verified off-campus rentals.</p>
+                    <button id="adminAccommodationBtn" class="btn-primary" style="background-color: var(--accent-green); margin-top: 0.5rem;">Add Boarding House</button>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <div id="accommodationModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Publish Boarding House</h3>
+                <p>Push verified housing arrangements live.</p>
+                <button id="closeAccModalBtn" class="modal-close-x" aria-label="Close form">&times;</button>
+            </div>
+            
+            <form id="accommodationUploadForm" class="auth-form">
+                <div class="form-group">
+                    <label for="hostelName">Hostel / Complex Name</label>
+                    <input type="text" id="hostelName" placeholder="e.g., Greenview Complex" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostelRent">Monthly Rent (MK)</label>
+                    <input type="number" id="hostelRent" placeholder="e.g., 35000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostelDistance">Distance from Campus</label>
+                    <input type="text" id="hostelDistance" placeholder="400m from Gate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostelPhotos">Upload Hostel Photos (Select multiple angles/views)</label>
+                    <input type="file" id="hostelPhotos" class="image-upload-input" accept="image/*" multiple required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostelSpecs">Utilities Breakdown</label>
+                    <input type="text" id="hostelSpecs" placeholder="Water Included | Prepaid Elec" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hostelSecurity">Security Protocols</label>
+                    <textarea id="hostelSecurity" rows="2" placeholder="Perimeter wall details..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="landlordPhone">Landlord WhatsApp Contact</label>
+                    <input type="tel" id="landlordPhone" placeholder="+265XXXXXXXXX" required>
+                </div>
+
+                <button type="submit" class="btn-primary btn-block" style="background-color: var(--accent-green);">Publish to Directory</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Domasi Hub.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('accommodationModal');
+            const openBtn = document.getElementById('adminAccommodationBtn');
+            const closeBtn = document.getElementById('closeAccModalBtn');
+            const printerToggleBtn = document.getElementById('printerStatusToggle');
+            const printerTrack = document.getElementById('printerTrack');
+            const printerThumb = document.getElementById('printerThumb');
+            const statusLabel = document.getElementById('statusLabel');
+            let isOnline = true;
+
+            if (printerToggleBtn) {
+                printerToggleBtn.addEventListener('click', () => {
+                    isOnline = !isOnline;
+                    if (isOnline) {
+                        printerTrack.style.backgroundColor = 'var(--accent-green)';
+                        printerThumb.style.transform = 'translateX(22px)';
+                        statusLabel.textContent = 'Active & Online';
+                        statusLabel.style.color = 'var(--accent-green)';
+                    } else {
+                        printerTrack.style.backgroundColor = '#4a4a4a';
+                        printerThumb.style.transform = 'translateX(4px)';
+                        statusLabel.textContent = 'Offline / Closed';
+                        statusLabel.style.color = 'var(--secondary-color)';
+                    }
+                });
+            }
+
+            if (openBtn) openBtn.addEventListener('click', () => modal.classList.add('active'));
+            const hideModal = () => modal.classList.remove('active');
+            if (closeBtn) closeBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => { if(e.target === modal) hideModal(); });
+
+            document.getElementById('marketplaceUploadForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const fileInput = document.getElementById('itemPhotos');
+                alert(`Success! Published item with ${fileInput.files.length} images.`);
+                e.target.reset();
+            });
+
+            document.getElementById('printerUploadForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const fileInput = document.getElementById('printerPhotos');
+                alert(`Success! Configured station with ${fileInput.files.length} gallery assets.`);
+                e.target.reset();
+            });
+
+            document.getElementById('accommodationUploadForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const fileInput = document.getElementById('hostelPhotos');
+                alert(`Success! Logged boarding house record with ${fileInput.files.length} asset previews.`);
+                hideModal();
+                e.target.reset();
+            });
+        });
+    </script>
+</body>
+</html>

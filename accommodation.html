@@ -3,98 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       npm.cmd start <title>Accommodation Directory | Domasi Hub</title>
+    <title>Accommodation Directory | Domasi Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="main-header">
         <div class="logo">
             <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
         </div>
         <nav class="main-nav">
+            <div class="theme-switch-wrapper">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
             <a href="index.html" class="btn-secondary">Home</a>
         </nav>
     </header>
 
     <main class="accommodation-container">
-        <!-- PAGE TITLE -->
         <section class="section-title">
             <h3>Accommodation Directory</h3>
-            <p>Find verified off-campus student boarding houses and rooms near campus.</p>
+            <p>Verified off-campus student boarding houses and rental units near Domasi.</p>
         </section>
 
-        <!-- ACCOMMODATION GRID -->
         <section class="rooms-grid">
             
-            <!-- Listing 1 -->
             <div class="room-card">
-                <div class="price-tag">MK 35,000 / month</div>
+                <div class="card-slider-wrapper">
+                    <div class="slider-track">
+                        <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Hostel+Exterior" alt="Exterior View" class="card-img-top">
+                        <img src="https://via.placeholder.com/400x250/007bff/ffffff?text=Room+Interior" alt="Interior View" class="card-img-top">
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev-btn">&lsaquo;</button>
+                        <button class="slider-arrow next-btn">&rsaquo;</button>
+                    </div>
+                </div>
+
+                <div class="price-tag">MK 35,000 / mo</div>
                 <div class="room-info">
-                    <h4>Greenview Boarding House</h4>
-                    <p class="room-distance">📍 Proximity: 5 mins walk from Main Gate</p>
+                    <h4>Greenview Boarding Complex</h4>
+                    <p class="room-distance">Distance: 400m from Main Campus Gate</p>
                     
                     <div class="specs-grid">
-                        <span class="spec-item">💧 Water: Inside Borehole</span>
-                        <span class="spec-item">⚡ Electricity: Prepaid (Shared)</span>
-                        <span class="spec-item">🛡️ Security: Fenced with Gate</span>
-                        <span class="spec-item">🛏️ Type: Single Room</span>
+                        <p>Shared Utilities | Prepaid Electricity Split Token System | Inside Running Water</p>
                     </div>
-
-                    <p class="landlord-note">Note: Looking for a quiet, responsible student. Only two rooms remaining.</p>
+                    <p class="landlord-note">Security: Brick fence perimeter wall with razor wire installations.</p>
                     
-                    <a href="https://wa.me/265888001122?text=Hi,%20I'm%20inquiring%20about%20the%20Greenview%20Boarding%20House%20room%20on%20Domasi%20Hub" 
-                                           npm.cmd starttarget="_blank" 
-                       class="btn-primary btn-accommodation">
+                    <a href="https://wa.me/265999111222?text=Hi%20Landlord,%20I'm%20inquiring%20about%20Greenview%20Complex%20on%20Domasi%20Hub" 
+                       target="_blank" 
+                       class="btn-primary btn-booking">
                        Contact Landlord
                     </a>
                 </div>
             </div>
 
-            <!-- Listing 2 -->
             <div class="room-card">
-                <div class="price-tag">MK 25,000 / month</div>
-                <div class="room-info">
-                    <h4>Shalom Compound (Shared)</h4>
-                    <p class="room-distance">📍 Proximity: 12 mins walk (Near Community Ground)</p>
-                    
-                    <div class="specs-grid">
-                        <span class="spec-item">💧 Water: Communal Tap</span>
-                        <span class="spec-item">⚡ Electricity: Included</span>
-                        <span class="spec-item">🛡️ Security: Watchman at Night</span>
-                        <span class="spec-item">🛏️ Type: Shared Room (2 Students)</span>
+                <div class="card-slider-wrapper">
+                    <div class="slider-track">
+                        <img src="https://via.placeholder.com/400x250/6c757d/ffffff?text=Unity+Annex+Main" alt="Main View" class="card-img-top">
                     </div>
-
-                    <p class="landlord-note">Note: Space available for one male student to share an existing double room.</p>
-                    
-                    <a href="https://wa.me/265999334455?text=Hi,%20I'm%20inquiring%20about%20the%20Shalom%20Compound%20shared%20space%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-accommodation">
-                       Contact Landlord
-                    </a>
                 </div>
-            </div>
 
-            <!-- Listing 3 -->
-            <div class="room-card">
-                <div class="price-tag">MK 50,000 / month</div>
+                <div class="price-tag">MK 25,000 / mo</div>
                 <div class="room-info">
-                    <h4>Modern Bedsits Complex</h4>
-                    <p class="room-distance">📍 Proximity: 8 mins walk (Behind Science Labs)</p>
+                    <h4>Unity Hostel Annex</h4>
+                    <p class="room-distance">Distance: 900m from Science Block Quad</p>
                     
                     <div class="specs-grid">
-                        <span class="spec-item">💧 Water: Running Pipe Water</span>
-                        <span class="spec-item">⚡ Electricity: Separate Meter</span>
-                        <span class="spec-item">🛡️ Security: Guard & Brick Wall</span>
-                        <span class="spec-item">🛏️ Type: Self-Contained Studio</span>
+                        <p>Shared Rooms (Pairing) | Free High-Yield Borehole Water Source</p>
                     </div>
-
-                    <p class="landlord-note">Note: Tiles, inside shower, and modern kitchen sink. Deposit required.</p>
+                    <p class="landlord-note">Security: Community neighborhood policing watch zone.</p>
                     
-                    <a href="https://wa.me/265888556677?text=Hi,%20I'm%20inquiring%20about%20the%20Modern%20Bedsits%20Complex%20on%20Domasi%20Hub" 
+                    <a href="https://wa.me/265999333444?text=Hi%20Landlord,%20I'm%20inquiring%20about%20the%20Unity%20Hostel%20bedspace%20on%20Domasi%20Hub" 
                        target="_blank" 
-                       class="btn-primary btn-accommodation">
+                       class="btn-primary btn-booking">
                        Contact Landlord
                     </a>
                 </div>
@@ -103,10 +90,34 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="main-footer">
         <p>&copy; 2026 Domasi Hub.</p>
     </footer>
 
+    <script src="theme.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrappers = document.querySelectorAll('.card-slider-wrapper');
+            wrappers.forEach(wrapper => {
+                const track = wrapper.querySelector('.slider-track');
+                const images = wrapper.querySelectorAll('.card-img-top');
+                const prevBtn = wrapper.querySelector('.prev-btn');
+                const nextBtn = wrapper.querySelector('.next-btn');
+                
+                if (!prevBtn || images.length <= 1) return;
+
+                let index = 0;
+                nextBtn.addEventListener('click', () => {
+                    index = (index + 1) % images.length;
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                });
+                prevBtn.addEventListener('click', () => {
+                    index = (index - 1 + images.length) % images.length;
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                });
+            });
+        });
+    </script>
 </body>
 </html>

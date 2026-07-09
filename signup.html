@@ -3,77 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | Domasi Hub</title>
+    <title>Create Account | Domasi Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- 1. HEADER & NAVIGATION -->
     <header class="main-header">
         <div class="logo">
             <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
         </div>
+        <nav class="main-nav">
+            <!-- Modern Styled Theme Toggle Container -->
+            <div class="theme-switch-wrapper">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+            <a href="index.html" class="btn-secondary">Home</a>
+        </nav>
     </header>
 
-    <!-- SIGN UP FORM CONTAINER -->
+    <!-- MAIN SEGMENT CONTAINER -->
     <main class="auth-container">
+        <!-- AUTHENTICATION CARD BLOCK -->
         <div class="auth-card">
-            <h2>Create Account</h2>
-            <p class="auth-subtitle">Register to unlock the marketplace, printing hub, and accommodation listings.</p>
-            
-            <form id="signUpForm" novalidate>
-                <!-- Full Name Field -->
+            <div class="auth-header">
+                <h3>Register Account</h3>
+                <p class="auth-subtitle">Join the independent campus network</p>
+            </div>
+
+            <form id="signUpForm" class="auth-form">
                 <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input 
-                        type="text" 
-                        id="fullName" 
-                        placeholder="e.g., John Doe" 
-                        required
-                    >
+                    <label for="reg-fullname">Full Name</label>
+                    <input type="text" id="reg-fullname" name="fullname" placeholder="e.g., Craig Mzumara" required>
                 </div>
 
-                <!-- Registration Number Field (Gatekeeper) -->
                 <div class="form-group">
-                    <label for="regNumber">Registration Number</label>
-                    <input 
-                        type="text" 
-                        id="regNumber" 
-                        
-                        required
-                        autocomplete="off"
-                    >
-                    <!-- Holds live validation text message -->
-                    <div id="validationFeedback" class="feedback-message"></div>
+                    <label for="reg-username">Username</label>
+                    <input type="text" id="reg-username" name="username" placeholder="Choose a unique username" required>
                 </div>
 
-                <!-- WhatsApp Contact Number -->
                 <div class="form-group">
-                    <label for="whatsappNumber">WhatsApp Number</label>
-                    <input 
-                        type="tel" 
-                        id="whatsappNumber" 
-                        placeholder="e.g., 0888123456" 
-                        required
-                    >
+                    <label for="reg-phone">WhatsApp Number</label>
+                    <input type="tel" id="reg-phone" name="phone" placeholder="e.g., +265999000000" required>
                 </div>
 
-               <!-- Password Field -->
-<div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Choose a secure password" required>
-</div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" name="password" placeholder="Create a strong password" required>
+                </div>
 
-<!-- Confirm Password Field -->
-<div class="form-group">
-    <label for="confirmPassword">Confirm Password</label>
-    <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
-    <!-- Holds match validation text message -->
-    <div id="passwordFeedback" class="feedback-message"></div>
-</div>
-
-                <button type="submit" class="btn-primary btn-block">Register Account</button>
+                <button type="submit" class="btn-primary btn-block">Create Account</button>
             </form>
+
+            <div class="auth-switch">
+                <p>Already registered? <a href="signin.html">Log in here</a></p>
+            </div>
         </div>
     </main>
 
@@ -82,8 +70,8 @@
         <p>&copy; 2026 Domasi Hub.</p>
     </footer>
 
-
+    <!-- Core Theme Toggle Script Handlers -->
     <script src="auth.js"></script>
-</body>
+    <script src="theme.js"></script>
 </body>
 </html>
