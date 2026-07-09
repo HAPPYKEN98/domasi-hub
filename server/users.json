@@ -6,5 +6,13 @@
     "whatsappNumber": "0887340621",
     "passwordHash": "$2b$10$1MTYjaHYIREPv6hcQfJJV.ZDZznAKz/ydoL5c1WBn8gUBmNrNFTzK",
     "createdAt": "2026-07-08T08:30:26.375Z"
+  },
+  {
+    "id": 1783598173453,
+    "fullName": "Test User",
+    "regNumber": "BED/SCI/999/26",
+    "whatsappNumber": "+265999000000",
+    "passwordHash": "$2b$10$VAKIGYntau/ZZCWa13DAkOvUEZyAojkt/h1Qt/P52dlKB.Sl1HoVO",
+    "createdAt": "2026-07-09T11:56:13.453Z"
   }
 ]

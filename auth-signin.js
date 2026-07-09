@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const regInput = document.getElementById('regNumber');
+    const regInput = document.getElementById('regNumber') || document.getElementById('username');
     const regFeedback = document.getElementById('validationFeedback');
     const passwordInput = document.getElementById('password');
     const signInForm = document.getElementById('signInForm');
+
+    if (!regInput || !passwordInput || !signInForm) {
+        console.error('Sign-in page is missing required form elements.');
+        return;
+    }
 
     // Silent Gatekeeper Validation (Triggers only when clicking away)
     regInput.addEventListener('blur', () => {
