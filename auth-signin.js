@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             alert('Signed in successfully. Redirecting...');
-            window.location.href = 'index.html';
+            window.location.href = 'portal.html';
         } catch (error) {
             console.error('Signin error:', error);
             alert('Unable to reach the server. Please try again later.');
