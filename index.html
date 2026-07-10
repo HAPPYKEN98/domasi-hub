@@ -34,6 +34,12 @@
             </p>
         </section>
 
+        <section id="recentSummary" class="module-card" style="margin: 0 auto 2rem auto; max-width: 900px;">
+            <h3>Recent Activity</h3>
+            <p class="auth-subtitle">Latest listings added to the campus directory.</p>
+            <div id="recentSummaryContent">Loading recent listings...</div>
+        </section>
+
         <!-- SERVICES DIRECTORY LINK CARDS -->
         <section class="services-grid">
 
@@ -71,5 +77,34 @@
 
     <!-- Core Theme Toggle Script Handler -->
     <script src="theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const summaryBox = document.getElementById('recentSummaryContent');
+            if (!summaryBox) return;
+
+            try {
+                const response = await fetch('/api/summary');
+                const data = await response.json();
+                const marketplace = (data.marketplace || []).map(item => `<li><strong>${item.title}</strong> · ${item.category} · MK ${Number(item.price).toLocaleString()}</li>`).join('');
+                const accommodations = (data.accommodations || []).map(item => `<li><strong>${item.title}</strong> · MK ${Number(item.rent).toLocaleString()} / month</li>`).join('');
+
+                summaryBox.innerHTML = `
+                    <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+                        <div>
+                            <h4>Marketplace</h4>
+                            <ul>${marketplace || '<li>No marketplace items yet.</li>'}</ul>
+                        </div>
+                        <div>
+                            <h4>Accommodation</h4>
+                            <ul>${accommodations || '<li>No accommodations yet.</li>'}</ul>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error(error);
+                summaryBox.textContent = 'Unable to load recent listings right now.';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -218,6 +218,14 @@
     <script src="theme.js"></script>
 
     <script>
+        const DomasiHubApi = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://127.0.0.1:3000'
+            : '';
+
+        function apiUrl(path) {
+            return `${DomasiHubApi}${path}`;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const sessionKey = 'domasi-auth';
             const session = localStorage.getItem(sessionKey);
@@ -267,24 +275,78 @@
             if (closeBtn) closeBtn.addEventListener('click', hideModal);
             modal.addEventListener('click', (e) => { if(e.target === modal) hideModal(); });
 
-            document.getElementById('marketplaceUploadForm').addEventListener('submit', (e) => {
+            document.getElementById('marketplaceUploadForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const fileInput = document.getElementById('itemPhotos');
-                alert(`Success! Published item with ${fileInput.files.length} images.`);
+                const imageFiles = document.getElementById('itemPhotos').files;
+                const imageUrls = Array.from(imageFiles).slice(0, 3).map(file => file.name);
+                const payload = {
+                    title: document.getElementById('itemName').value.trim(),
+                    price: document.getElementById('itemPrice').value,
+                    category: document.getElementById('itemCategory').value,
+                    conditionText: document.getElementById('itemCondition').value.trim(),
+                    sellerName: localStorage.getItem('domasi-user') || 'Anonymous',
+                    sellerPhone: localStorage.getItem('domasi-phone') || '+265999000000',
+                    description: '',
+                    imageUrls
+                };
+
+                const response = await fetch(apiUrl('/api/marketplace'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                alert(result.message || 'Listing submitted.');
                 e.target.reset();
             });
 
-            document.getElementById('printerUploadForm').addEventListener('submit', (e) => {
+            document.getElementById('printerUploadForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const fileInput = document.getElementById('printerPhotos');
-                alert(`Success! Configured station with ${fileInput.files.length} gallery assets.`);
+                const imageFiles = document.getElementById('printerPhotos').files;
+                const imageUrls = Array.from(imageFiles).slice(0, 3).map(file => file.name);
+                const payload = {
+                    stationName: document.getElementById('printerStationName').value.trim(),
+                    location: document.getElementById('printerStationLocation').value.trim(),
+                    hardwareModel: document.getElementById('printerHardwareModel').value.trim(),
+                    rateBW: document.getElementById('rateBW').value,
+                    rateColor: document.getElementById('rateColor').value,
+                    imageUrls
+                };
+
+                const response = await fetch(apiUrl('/api/printers'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                alert(result.message || 'Printer station submitted.');
                 e.target.reset();
             });
 
-            document.getElementById('accommodationUploadForm').addEventListener('submit', (e) => {
+            document.getElementById('accommodationUploadForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const fileInput = document.getElementById('hostelPhotos');
-                alert(`Success! Logged boarding house record with ${fileInput.files.length} asset previews.`);
+                const imageFiles = document.getElementById('hostelPhotos').files;
+                const imageUrls = Array.from(imageFiles).slice(0, 3).map(file => file.name);
+                const payload = {
+                    hostelName: document.getElementById('hostelName').value.trim(),
+                    rent: document.getElementById('hostelRent').value,
+                    distance: document.getElementById('hostelDistance').value.trim(),
+                    specs: document.getElementById('hostelSpecs').value.trim(),
+                    security: document.getElementById('hostelSecurity').value.trim(),
+                    landlordPhone: document.getElementById('landlordPhone').value.trim(),
+                    imageUrls
+                };
+
+                const response = await fetch(apiUrl('/api/accommodations'), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                alert(result.message || 'Accommodation submitted.');
                 hideModal();
                 e.target.reset();
             });

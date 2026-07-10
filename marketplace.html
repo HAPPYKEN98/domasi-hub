@@ -30,80 +30,7 @@
             <p>Buy or sell academic essentials directly via WhatsApp.</p>
         </section>
 
-        <section class="products-grid">
-            
-            <div class="product-card">
-                <div class="card-slider-wrapper">
-                    <div class="slider-track">
-                        <img src="https://via.placeholder.com/400x250/007bff/ffffff?text=Module+Cover+Front" alt="Front Preview" class="card-img-top">
-                        <img src="https://via.placeholder.com/400x250/6c757d/ffffff?text=Module+Table+Of+Contents" alt="Contents Preview" class="card-img-top">
-                    </div>
-                    <div class="slider-controls">
-                        <button class="slider-arrow prev-btn">&lsaquo;</button>
-                        <button class="slider-arrow next-btn">&rsaquo;</button>
-                    </div>
-                </div>
-
-                <div class="product-badge">Books</div>
-                <div class="product-info">
-                    <h4>Education Foundations Module</h4>
-                    <p class="product-price">MK 4,500</p>
-                    <p class="product-condition">Condition: Pristine</p>
-                    <p class="product-seller">Seller: Craig Mzumara</p>
-                    <a href="https://wa.me/265999000000?text=Hi%20Craig,%20I'm%20interested%20in%20your%20Education%20Foundations%20Module%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-marketplace">
-                       Chat on WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-slider-wrapper">
-                    <div class="slider-track">
-                        <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Casio+Calculator" alt="Item Preview" class="card-img-top">
-                    </div>
-                </div>
-                <div class="product-badge">Electronics</div>
-                <div class="product-info">
-                    <h4>Casio Scientific Calculator</h4>
-                    <p class="product-price">MK 18,000</p>
-                    <p class="product-condition">Condition: Used - Like New</p>
-                    <p class="product-seller">Seller: Gift</p>
-                    <a href="https://wa.me/265999654321?text=Hi%20Gift,%20I'm%20interested%20in%20your%20Casio%20Calculator%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-marketplace">
-                       Chat on WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-slider-wrapper">
-                    <div class="slider-track">
-                        <img src="https://via.placeholder.com/400x250/1e1e24/ffffff?text=Mattress+View+1" alt="View 1" class="card-img-top">
-                        <img src="https://via.placeholder.com/400x250/333333/ffffff?text=Mattress+Thickness" alt="View 2" class="card-img-top">
-                    </div>
-                    <div class="slider-controls">
-                        <button class="slider-arrow prev-btn">&lsaquo;</button>
-                        <button class="slider-arrow next-btn">&rsaquo;</button>
-                    </div>
-                </div>
-                <div class="product-badge">Essentials</div>
-                <div class="product-info">
-                    <h4>Sub-Lease Mattress (4 Inches)</h4>
-                    <p class="product-price">MK 25,000</p>
-                    <p class="product-condition">Condition: Fair</p>
-                    <p class="product-seller">Seller: Alice</p>
-                    <a href="https://wa.me/265888789012?text=Hi%20Alice,%20I'm%20interested%20in%20your%20Mattress%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-marketplace">
-                       Chat on WhatsApp
-                    </a>
-                </div>
-            </div>
-
-        </section>
+        <section id="productsGrid" class="products-grid"></section>
     </main>
 
     <footer class="main-footer">
@@ -113,31 +40,34 @@
     <script src="theme.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const wrappers = document.querySelectorAll('.card-slider-wrapper');
-            wrappers.forEach(wrapper => {
-                const track = wrapper.querySelector('.slider-track');
-                const images = wrapper.querySelectorAll('.card-img-top');
-                const prevBtn = wrapper.querySelector('.prev-btn');
-                const nextBtn = wrapper.querySelector('.next-btn');
-                
-                if (images.length <= 1) return; // Discard calculations if single asset
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('productsGrid');
+            try {
+                const response = await fetch('/api/marketplace');
+                const items = await response.json();
 
-                let index = 0;
-                const updateSlider = () => {
-                    track.style.transform = `translateX(-${index * 100}%)`;
-                };
+                if (!items.length) {
+                    grid.innerHTML = '<p class="auth-subtitle">No marketplace listings yet.</p>';
+                    return;
+                }
 
-                nextBtn.addEventListener('click', () => {
-                    index = (index + 1) % images.length;
-                    updateSlider();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    index = (index - 1 + images.length) % images.length;
-                    updateSlider();
-                });
-            });
+                grid.innerHTML = items.map(item => `
+                    <div class="product-card">
+                        <div class="product-badge">${item.category}</div>
+                        <div class="product-info">
+                            <h4>${item.title}</h4>
+                            <p class="product-price">MK ${Number(item.price).toLocaleString()}</p>
+                            <p class="product-condition">Condition: ${item.condition_text}</p>
+                            <p class="product-seller">Seller: ${item.seller_name}</p>
+                            <p class="product-seller">${item.description || ''}</p>
+                            <a href="https://wa.me/${item.seller_phone}?text=Hi%20${encodeURIComponent(item.seller_name)},%20I'm%20interested%20in%20your%20${encodeURIComponent(item.title)}%20on%20Domasi%20Hub" target="_blank" class="btn-primary btn-marketplace">Chat on WhatsApp</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<p class="auth-subtitle">Unable to load listings right now.</p>';
+            }
         });
     </script>
 </body>

@@ -1,3 +1,11 @@
+const DomasiHubApi = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://127.0.0.1:3000'
+    : '';
+
+function apiUrl(path) {
+    return `${DomasiHubApi}${path}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const regInput = document.getElementById('regNumber') || document.getElementById('username');
     const regFeedback = document.getElementById('validationFeedback');
@@ -51,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('/api/signin', {
+            const response = await fetch(apiUrl('/api/signin'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

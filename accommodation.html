@@ -30,64 +30,7 @@
             <p>Verified off-campus student boarding houses and rental units near Domasi.</p>
         </section>
 
-        <section class="rooms-grid">
-            
-            <div class="room-card">
-                <div class="card-slider-wrapper">
-                    <div class="slider-track">
-                        <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=Hostel+Exterior" alt="Exterior View" class="card-img-top">
-                        <img src="https://via.placeholder.com/400x250/007bff/ffffff?text=Room+Interior" alt="Interior View" class="card-img-top">
-                    </div>
-                    <div class="slider-controls">
-                        <button class="slider-arrow prev-btn">&lsaquo;</button>
-                        <button class="slider-arrow next-btn">&rsaquo;</button>
-                    </div>
-                </div>
-
-                <div class="price-tag">MK 35,000 / mo</div>
-                <div class="room-info">
-                    <h4>Greenview Boarding Complex</h4>
-                    <p class="room-distance">Distance: 400m from Main Campus Gate</p>
-                    
-                    <div class="specs-grid">
-                        <p>Shared Utilities | Prepaid Electricity Split Token System | Inside Running Water</p>
-                    </div>
-                    <p class="landlord-note">Security: Brick fence perimeter wall with razor wire installations.</p>
-                    
-                    <a href="https://wa.me/265887340621?text=Hi%20Landlord,%20I'm%20inquiring%20about%20Greenview%20Complex%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-booking">
-                       Contact Landlord
-                    </a>
-                </div>
-            </div>
-
-            <div class="room-card">
-                <div class="card-slider-wrapper">
-                    <div class="slider-track">
-                        <img src="https://via.placeholder.com/400x250/6c757d/ffffff?text=Unity+Annex+Main" alt="Main View" class="card-img-top">
-                    </div>
-                </div>
-
-                <div class="price-tag">MK 25,000 / mo</div>
-                <div class="room-info">
-                    <h4>Unity Hostel Annex</h4>
-                    <p class="room-distance">Distance: 900m from Science Block Quad</p>
-                    
-                    <div class="specs-grid">
-                        <p>Shared Rooms (Pairing) | Free High-Yield Borehole Water Source</p>
-                    </div>
-                    <p class="landlord-note">Security: Community neighborhood policing watch zone.</p>
-                    
-                    <a href="https://wa.me/265?text=Hi%20Landlord,%20I'm%20inquiring%20about%20the%20Unity%20Hostel%20bedspace%20on%20Domasi%20Hub" 
-                       target="_blank" 
-                       class="btn-primary btn-booking">
-                       Contact Landlord
-                    </a>
-                </div>
-            </div>
-
-        </section>
+        <section id="accommodationGrid" class="rooms-grid"></section>
     </main>
 
     <footer class="main-footer">
@@ -97,26 +40,35 @@
     <script src="theme.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const wrappers = document.querySelectorAll('.card-slider-wrapper');
-            wrappers.forEach(wrapper => {
-                const track = wrapper.querySelector('.slider-track');
-                const images = wrapper.querySelectorAll('.card-img-top');
-                const prevBtn = wrapper.querySelector('.prev-btn');
-                const nextBtn = wrapper.querySelector('.next-btn');
-                
-                if (!prevBtn || images.length <= 1) return;
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('accommodationGrid');
+            try {
+                const response = await fetch('/api/accommodations');
+                const items = await response.json();
 
-                let index = 0;
-                nextBtn.addEventListener('click', () => {
-                    index = (index + 1) % images.length;
-                    track.style.transform = `translateX(-${index * 100}%)`;
-                });
-                prevBtn.addEventListener('click', () => {
-                    index = (index - 1 + images.length) % images.length;
-                    track.style.transform = `translateX(-${index * 100}%)`;
-                });
-            });
+                if (!items.length) {
+                    grid.innerHTML = '<p class="auth-subtitle">No accommodation listings yet.</p>';
+                    return;
+                }
+
+                grid.innerHTML = items.map(item => `
+                    <div class="room-card">
+                        <div class="price-tag">MK ${Number(item.rent).toLocaleString()} / mo</div>
+                        <div class="room-info">
+                            <h4>${item.hostel_name}</h4>
+                            <p class="room-distance">Distance: ${item.distance}</p>
+                            <div class="specs-grid">
+                                <p>${item.specs}</p>
+                            </div>
+                            <p class="landlord-note">Security: ${item.security}</p>
+                            <a href="https://wa.me/${item.landlord_phone}?text=Hi%20Landlord,%20I'm%20inquiring%20about%20${encodeURIComponent(item.hostel_name)}%20on%20Domasi%20Hub" target="_blank" class="btn-primary btn-booking">Contact Landlord</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<p class="auth-subtitle">Unable to load accommodation listings right now.</p>';
+            }
         });
     </script>
 </body>
