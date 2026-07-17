@@ -179,6 +179,12 @@ app.get('/db-check', async (req, res) => {
   }
 });
 
+// --- Root Route ---
+app.get('/', (req, res) => {
+  res.send('Domasi Hub backend is running!');
+});
+
+
 app.listen(PORT, () => {
   console.log(`Domasi Hub backend running at http://localhost:${PORT}`);
 });
