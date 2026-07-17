@@ -1,44 +1,41 @@
 CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  full_name TEXT NOT NULL,
-  reg_number TEXT NOT NULL UNIQUE,
-  whatsapp_number TEXT NOT NULL,
-  password_hash TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR(255) NOT NULL,
+  reg_number VARCHAR(50) UNIQUE NOT NULL,
+  whatsapp_number VARCHAR(20) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE IF NOT EXISTS marketplace_items (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  price INTEGER NOT NULL,
-  category TEXT NOT NULL,
-  condition_text TEXT NOT NULL,
-  seller_name TEXT NOT NULL,
-  seller_phone TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  price NUMERIC,
+  category VARCHAR(100),
+  condition_text TEXT,
+  seller_name VARCHAR(255),
+  seller_phone VARCHAR(20),
   description TEXT,
   image_urls TEXT,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE IF NOT EXISTS printer_stations (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  station_name TEXT NOT NULL,
-  location TEXT NOT NULL,
-  hardware_model TEXT NOT NULL,
-  rate_bw INTEGER NOT NULL,
-  rate_color INTEGER NOT NULL,
-  image_urls TEXT,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE IF NOT EXISTS accommodations (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  hostel_name TEXT NOT NULL,
-  rent INTEGER NOT NULL,
-  distance TEXT NOT NULL,
-  specs TEXT NOT NULL,
-  security TEXT NOT NULL,
-  landlord_phone TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  hostel_name VARCHAR(255) NOT NULL,
+  rent NUMERIC,
+  distance VARCHAR(100),
+  specs TEXT,
+  security TEXT,
+  landlord_phone VARCHAR(20),
   image_urls TEXT,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS printer_stations (
+  id SERIAL PRIMARY KEY,
+  station_name VARCHAR(255) NOT NULL,
+  location VARCHAR(255),
+  hardware_model VARCHAR(255),
+  rate_bw NUMERIC,
+  rate_color NUMERIC,
+  image_urls TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
