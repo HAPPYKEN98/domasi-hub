@@ -8,8 +8,14 @@
     "dev": "node server/index.js"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "@mapbox/node-pre-gyp": "^2.0.3",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^17.4.2",
+    "express": "^4.18.2",
+    "tar": "^7.5.20"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true
   }
 }
