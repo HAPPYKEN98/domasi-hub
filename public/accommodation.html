@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Directory | Domasi Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">Domasi Hub</a></h1>
+        </div>
+        <nav class="main-nav">
+            <div class="theme-switch-wrapper">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <span class="toggle-track">
+                        <span class="toggle-thumb"></span>
+                    </span>
+                </button>
+            </div>
+            <a href="index.html" class="btn-secondary">Home</a>
+        </nav>
+    </header>
+
+    <main class="accommodation-container">
+        <section class="section-title">
+            <h3>Accommodation Directory</h3>
+            <p>Verified off-campus student boarding houses and rental units near Domasi.</p>
+        </section>
+
+        <section id="accommodationGrid" class="rooms-grid"></section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Domasi Hub.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('accommodationGrid');
+            try {
+                const response = await fetch('/api/accommodations');
+                const items = await response.json();
+
+                if (!items.length) {
+                    grid.innerHTML = '<p class="auth-subtitle">No accommodation listings yet.</p>';
+                    return;
+                }
+
+                grid.innerHTML = items.map(item => `
+                    <div class="room-card">
+                        <div class="price-tag">MK ${Number(item.rent).toLocaleString()} / mo</div>
+                        <div class="room-info">
+                            <h4>${item.hostel_name}</h4>
+                            <p class="room-distance">Distance: ${item.distance}</p>
+                            <div class="specs-grid">
+                                <p>${item.specs}</p>
+                            </div>
+                            <p class="landlord-note">Security: ${item.security}</p>
+                            <a href="https://wa.me/${item.landlord_phone}?text=Hi%20Landlord,%20I'm%20inquiring%20about%20${encodeURIComponent(item.hostel_name)}%20on%20Domasi%20Hub" target="_blank" class="btn-primary btn-booking">Contact Landlord</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<p class="auth-subtitle">Unable to load accommodation listings right now.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
