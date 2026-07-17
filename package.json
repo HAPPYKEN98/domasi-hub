@@ -8,14 +8,17 @@
     "dev": "node server/index.js"
   },
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^2.0.3",
-    "bcrypt": "^6.0.0",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
-    "dotenv": "^17.4.2",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "tar": "^7.5.20"
+    "pg": "^8.11.1"
   },
   "allowScripts": {
-    "bcrypt@5.1.1": true
+    "bcrypt@5.1.0": true
+  },
+  "overrides": {
+    "tar": "^7.5.16",
+    "@mapbox/node-pre-gyp/tar": "^7.5.16"
   }
 }
