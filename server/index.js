@@ -1,30 +1,27 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
 import fs from 'fs';
-import { pool } from './db.js'; // assuming you export a pg Pool
+import pkg from 'pg';
 
-// Read schema.sql
+dotenv.config();
+const { Pool } = pkg;
+const PORT = process.env.PORT || 3000;
+
+// Create the pool once
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // required on Render free tier
+});
+
+// Apply schema.sql at startup
 const schema = fs.readFileSync('./server/schema.sql', 'utf8');
-
-// Apply schema once at startup
 pool.query(schema)
   .then(() => console.log("✅ Schema applied"))
   .catch(err => console.error("❌ Schema error", err));
 
-
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const { Pool } = require('pg');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Connect to Postgres
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // required on Render
-});
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public')); // adjust if you serve static files
@@ -196,7 +193,6 @@ app.get('/', (req, res) => {
   res.send('Domasi Hub backend is running!');
 });
 
-
 app.listen(PORT, () => {
-  console.log(`Domasi Hub backend running at http://localhost:${PORT}`);
+  console.log(`🚀 Domasi Hub backend running at http://localhost:${PORT}`);
 });
