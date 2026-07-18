@@ -2,6 +2,7 @@
   "name": "domasi-hub",
   "version": "1.0.0",
   "description": "Domasi Hub web app with backend authentication",
+  "type": "module",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
