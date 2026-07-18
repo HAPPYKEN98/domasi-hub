@@ -1,3 +1,15 @@
+import fs from 'fs';
+import { pool } from './db.js'; // assuming you export a pg Pool
+
+// Read schema.sql
+const schema = fs.readFileSync('./server/schema.sql', 'utf8');
+
+// Apply schema once at startup
+pool.query(schema)
+  .then(() => console.log("✅ Schema applied"))
+  .catch(err => console.error("❌ Schema error", err));
+
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
